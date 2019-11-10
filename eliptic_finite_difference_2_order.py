@@ -1,4 +1,13 @@
 import numpy as np
+import csv
+
+def write_csv(tar_row): #fungsi menulis data ke excel
+    with open("distribusi_temperatur.csv", "a", newline="") as dergen:
+        deriv_write = csv.writer(dergen)
+        deriv_write_row = deriv_write.writerow(tar_row)
+
+with open("distribusi_temperatur.csv", "w") as blank: #menghapus data file excel
+    blank.truncate()
 
 main_matrix = []
 len_row_matrix = 5
@@ -132,4 +141,5 @@ for d in range (1,len_column_matrix-1):
 
 print(' ')
 for i in range(len_column_matrix):
+    write_csv(temp_dist_matrix[i])
     print(temp_dist_matrix[i])
