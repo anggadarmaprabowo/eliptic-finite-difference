@@ -15,7 +15,7 @@ for j in range(len_row_matrix):
     row_matrix = []
     for i in range(len_column_matrix):
         row_matrix.append(0)
-    print(row_matrix)
+    #print(row_matrix)
     main_matrix.append(row_matrix)
     column+=1
 
@@ -40,8 +40,8 @@ for i in range(1,len_row_matrix-1):
 for i in range(1,len_row_matrix-1):
     main_matrix[i][0] = batas_kiri
 
-for i in range(len_row_matrix):
-    print(main_matrix[i])
+#for i in range(len_row_matrix):
+    #print(main_matrix[i])
 
 print( )
 # operasi perhitungan tiap node
@@ -49,7 +49,7 @@ print( )
 # membuat matrix penyelesaian
 count_matrix = []
 len_matrix = (len_row_matrix-2) * (len_column_matrix-2)
-print(len_matrix)
+#print(len_matrix)
 for i in range(len_matrix):
     row_matrix_count = []
     for j in range(len_matrix):
@@ -66,40 +66,38 @@ for i in range(len_matrix):
         if j == i:
             count_matrix[i][j] = 4
 
-#for i in range(len_matrix):
-    #print(count_matrix[i])
 
-#target_matrix = []
+target_matrix = []
+for t in range (len_matrix):
+    target_matrix.append(0)
+
+
 # operasi m-1 (bawah)
 for m in range(1,len_column_matrix-1):
-    row_target_matrix = []
 
     for n in range(1,len_row_matrix-1):
         if main_matrix[m-1][n] != 0:
-            jumlah_target_1 = main_matrix[m-1][n]
+            target_matrix[(((len_column_matrix - 2) * (m-1) + n) - 1)] += main_matrix[m-1][n]
         else:
             jumlah_target_1 = 0
             count_matrix[(((len_column_matrix - 2) * (m-1) + n) - 1)] [(((len_column_matrix - 2) * (m-2)) + n)-1] = -1
 
 #operasi m+1 (atas)
 for m in range(1, len_column_matrix - 1):
-    row_target_matrix = []
 
     for n in range(1, len_row_matrix - 1):
         if main_matrix[m + 1][n] != 0:
-            jumlah_target_2 = main_matrix[m + 1][n]
+            target_matrix[(((len_column_matrix - 2) * (m-1) + n) - 1)] += main_matrix[m + 1][n]
         else:
             jumlah_target_2 = 0
             count_matrix[(((len_column_matrix - 2) * (m-1) + n)-1)] [(((len_column_matrix - 2) * (m)) + n) - 1] = -1
-            print(n,m)
 
 #operasi n-1 (kiri)
 for m in range(1,len_column_matrix-1):
-    row_target_matrix = []
 
     for n in range(1,len_row_matrix-1):
         if main_matrix[m][n-1] != 0:
-            jumlah_target_1 = main_matrix[m-1][n]
+            target_matrix[(((len_column_matrix - 2) * (m-1) + n) - 1)] += main_matrix[m][n-1]
         else:
             jumlah_target_1 = 0
             count_matrix[(((len_column_matrix - 2) * (m-1) + n)-1)][(((len_column_matrix - 2) * (m-1) + n)) - 2] = -1
@@ -107,17 +105,18 @@ for m in range(1,len_column_matrix-1):
 
 #operasi n+1 (kanan)
 for m in range(1,len_column_matrix-1):
-    row_target_matrix = []
 
     for n in range(1,len_row_matrix-1):
         if main_matrix[m][n+1] != 0:
-            jumlah_target_1 = main_matrix[m-1][n]
+            target_matrix[(((len_column_matrix - 2) * (m-1) + n) - 1)] += main_matrix[m][n+1]
         else:
             jumlah_target_1 = 0
             count_matrix[(((len_column_matrix - 2) * (m-1) + n)-1)][(((len_column_matrix - 2) * (m-1) + n))] = -1
 
-    #umlah_target = jumlah_target_1 + jumlah_target_2 + jumlah_target_3 + jumlah_target_4
-    #row_target_matrix.append(jumlah_target)
-    print(" ")
-    for i in range(len_matrix):
+print(" ")
+for i in range(len_matrix):
         print(count_matrix[i])
+
+print(" ")
+for i in range(len_matrix):
+        print(target_matrix[i])
