@@ -15,7 +15,7 @@ for j in range(len_row_matrix):
     row_matrix = []
     for i in range(len_column_matrix):
         row_matrix.append(0)
-    #print(row_matrix)
+    print(row_matrix)
     main_matrix.append(row_matrix)
     column+=1
 
@@ -120,3 +120,16 @@ for i in range(len_matrix):
 print(" ")
 for i in range(len_matrix):
         print(target_matrix[i])
+
+#melakukan operasi linear untuk memperoleh distribusi temperatur
+temp_dist = np.linalg.solve(count_matrix, target_matrix)
+print(temp_dist)
+temp_dist_matrix = main_matrix
+for d in range (1,len_column_matrix-1):
+    
+    for i in range (1, len_row_matrix-1):
+        temp_dist_matrix[d][i] = temp_dist[((d-1)*(len_column_matrix - 2))+i-1]
+
+print(' ')
+for i in range(len_column_matrix):
+    print(temp_dist_matrix[i])
